@@ -80,10 +80,12 @@
 <meta property="og:site_name" content="JinMing">
 <meta property="og:description" content="事务隔离级别 READ UNCOMMITED:读未提交是指，一个事务还没提交时，它做的变更就能被别的事务看到。 READ COMMITED:读提交是指，一个事务提交之后，它做的变更才会被其他事务看到。 REPEATABLE READ:可重复读是指，一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。 SERIALIZA">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-23T09:28:20.305Z">
+<meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/823acf76e53c0bdba7beab45e72e90d6.png">
+<meta property="og:updated_time" content="2020-08-25T15:46:55.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql事务.md">
 <meta name="twitter:description" content="事务隔离级别 READ UNCOMMITED:读未提交是指，一个事务还没提交时，它做的变更就能被别的事务看到。 READ COMMITED:读提交是指，一个事务提交之后，它做的变更才会被其他事务看到。 REPEATABLE READ:可重复读是指，一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。 SERIALIZA">
+<meta name="twitter:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/823acf76e53c0bdba7beab45e72e90d6.png">
   <link rel="canonical" href="http://caixukun8.top/2020/08/23/Mysql/Mysql事务/">
 
 
@@ -306,11 +308,19 @@
                 
               
 
-              <time title="创建时间：2020-08-23 12:31:35 / 修改时间：17:28:20" itemprop="dateCreated datePublished" datetime="2020-08-23T12:31:35+08:00">2020-08-23</time>
+              <time title="创建时间：2020-08-23 12:31:35" itemprop="dateCreated datePublished" datetime="2020-08-23T12:31:35+08:00">2020-08-23</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-25 23:46:55" itemprop="dateModified" datetime="2020-08-25T23:46:55+08:00">2020-08-25</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -336,7 +346,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.3k</span>
+              <span>3.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -346,7 +356,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -366,12 +376,15 @@
 <li>SERIALIZALBE:串行化，顾名思义是对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。</li>
 </ul>
 <p>可以使用 select @@tx_isolation;或者show variables like ‘tx_isolation’;来查看当前的事务隔离级别。</p>
-<p>在实现上，数据库里面会创建一个视图，访问的时候以视图的逻辑结果为准。在“可重复读”隔离级别下，这个视图是在事务启动时创建的，整个事务存在期间都用这个视图，就保证了可重复度的特性。在“读提交”隔离级别下，这个视图是在每个 SQL 语句开始执行的时候创建的，因为读要求的特性是每次都读到最新已提交的值，就需要在每个SQL语句开始执行的时候创建视图。这里需要注意的是，“读未提交”隔离级别下直接返回记录上的最新值，没有视图概念；而“串行化”隔离级别下直接用加锁的方式来避免并行访问。</p>
-<h4 id="读提交不创建视图行不行？"><a href="#读提交不创建视图行不行？" class="headerlink" title="读提交不创建视图行不行？"></a>读提交不创建视图行不行？</h4><p>不行，因为当前【数据页】中最新的数据是【有可能未提交】的，没有read_view作为依据，是无法确定到哪个位置（数据页/回滚段）找到已提交的数据的。相对地，【未提交读】则不需要read_view，直接获取数据页中最新的数据（不管是否提交，所以有可能会出现脏读）。</p>
-<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><p>在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
-<p>你一定会问，回滚日志总不能一直保留吧，什么时候删除呢？答案是，在不需要的时候才删除。也就是说，系统会判断，当没有事务再需要用到这些回滚日志时，回滚日志会被删除。</p>
+<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><p>在实现上，数据库里面会创建一个一致性视图，访问的时候以视图的逻辑结果为准。在“可重复读”隔离级别下，这个视图是在事务启动时创建的，整个事务存在期间都用这个视图，就保证了可重复度的特性。在“读提交”隔离级别下，这个视图是在每个 SQL 语句开始执行的时候创建的，因为读要求的特性是每次都读到最新已提交的值，就需要在每个SQL语句开始执行的时候创建视图。这里需要注意的是，“读未提交”隔离级别下直接返回记录上的最新值，没有视图概念；而“串行化”隔离级别下直接用加锁的方式来避免并行访问。</p>
+<h4 id="此视图非彼视图"><a href="#此视图非彼视图" class="headerlink" title="此视图非彼视图"></a>此视图非彼视图</h4><p>在Mysql中，有两个“视图”的概念：</p>
+<ul>
+<li>一个是view，它是一个用查询语句定义的虚拟表，在调用的时候就执行查询语句并生成结果，创建视图的语法是create view ……，而它的查询方法和表一样</li>
+<li>另一个是Innodb在实现MVCC时用到的一致性读视图(consistent read view)，用于支持Read Commited和Repeatbale Read隔离级别的实现，它并不是物理上真实存在的，而是每次需要的时候，根据当前版本和undo log计算出来的。</li>
+</ul>
+<h4 id="一致性视图什么时候删除？"><a href="#一致性视图什么时候删除？" class="headerlink" title="一致性视图什么时候删除？"></a>一致性视图什么时候删除？</h4><p>在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
+<p>那什么时候删除呢？答案是，在不需要的时候才删除。也就是说，系统会判断，当没有事务再需要用到这些回滚日志时，回滚日志会被删除。</p>
 <p>什么时候才不需要了呢？就是当系统里没有比这个回滚日志更早的 read-view 的时候。</p>
-<p>同一条记录在系统中可以存在多个版本，这就是数据库的多版本并发控制（MVCC）。</p>
 <h3 id="长事务"><a href="#长事务" class="headerlink" title="长事务"></a>长事务</h3><p>长事务意味着系统里面会存在很老的事务视图。由于这些事务随时可能访问数据库里面的任何数据，所以这个事务提交之前，数据库里面它可能用到的回滚记录都必须保留，这就会导致大量占用存储空间。</p>
 <p>在 MySQL 5.5 及以前的版本，回滚日志是跟数据字典一起放在 ibdata 文件里的，即使长事务最终提交，回滚段被清理，文件也不会变小。我见过数据只有 20GB，而回滚段有 200GB 的库。最终只好为了清理回滚段，重建整个库。</p>
 <p>除了对回滚段的影响，长事务还占用锁资源，也可能拖垮整个库。</p>
@@ -384,7 +397,26 @@
 <p>你可以在 information_schema 库的 innodb_trx 这个表中查询长事务，比如下面这个语句，用于查找持续时间超过 60s 的事务。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> information_schema.innodb_trx <span class="keyword">where</span> TIME_TO_SEC(<span class="keyword">timediff</span>(<span class="keyword">now</span>(),trx_started))&gt;<span class="number">60</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="问题1-如何避免长事务？"><a href="#问题1-如何避免长事务？" class="headerlink" title="问题1:如何避免长事务？"></a>问题1:如何避免长事务？</h3><p>首先，从应用开发端来看：</p>
+<h3 id="一个栗子发现事务与行锁的关系"><a href="#一个栗子发现事务与行锁的关系" class="headerlink" title="一个栗子发现事务与行锁的关系"></a>一个栗子发现事务与行锁的关系</h3><p>下面是一个只有两行的表的初始化语句。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`k`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t(<span class="keyword">id</span>, k) <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/823acf76e53c0bdba7beab45e72e90d6.png" alt="事务A、B、C的执行流程"></p>
+<p>这里，我们需要注意的是事务的启动时机。</p>
+<h4 id="事务的启动时机"><a href="#事务的启动时机" class="headerlink" title="事务的启动时机"></a>事务的启动时机</h4><ul>
+<li><p>begin/start transaction命令并不是一个事务的起点，一致性视图是在执行第一个操作Innodb表时创建的；</p>
+</li>
+<li><p>start transaction with consistent snapshot命令，一致性视图是在执行 start transaction with consistent snapshot 时创建的。</p>
+</li>
+</ul>
+<p>在这个例子中，事务 C 没有显式地使用 begin/commit，表示这个 update 语句本身就是一个事务，语句完成的时候会自动提交。事务 B 在更新了行之后查询 ; 事务 A 在一个只读事务中查询，并且时间顺序上是在事务 B 的查询之后。</p>
+<h3 id="问题1：读提交不创建一致性视图行不行？"><a href="#问题1：读提交不创建一致性视图行不行？" class="headerlink" title="问题1：读提交不创建一致性视图行不行？"></a>问题1：读提交不创建一致性视图行不行？</h3><p>不行。一致性视图的作用是规定哪些数据对于当前事务是可见的，哪些数据对于当前事务是不可见的。</p>
+<p>读提交的隔离级别，要求当前事务读取的是别的事务提交后的数据。但是，以下两种“当前读”的情况，即使别的事务还没提交，当前事务就可以读取到其他事务未提交的值，这是违反了读提交隔离级别的特性的。</p>
+<ul>
+<li>update语句是当前读的</li>
+<li>select语句加锁是当前读的</li>
+</ul>
+<p>所以，读提交的隔离级别需要一致性视图来判断哪些数据对于当前事务是可见的。</p>
+<h3 id="问题2-如何避免长事务？"><a href="#问题2-如何避免长事务？" class="headerlink" title="问题2:如何避免长事务？"></a>问题2:如何避免长事务？</h3><p>首先，从应用开发端来看：</p>
 <ol>
 <li><p>确认是否使用了 set autocommit=0。这个确认工作可以在测试环境中开展，把 MySQL 的 general_log 开起来，然后随便跑一个业务逻辑，通过 general_log 的日志来确认。一般框架如果会设置这个值，也就会提供参数来控制行为，你的目标就是把它改成 1。</p>
 </li>
@@ -657,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.</span> <span class="nav-text">事务隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读提交不创建视图行不行？"><span class="nav-number">1.1.</span> <span class="nav-text">读提交不创建视图行不行？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离的实现"><span class="nav-number">2.</span> <span class="nav-text">事务隔离的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长事务"><span class="nav-number">3.</span> <span class="nav-text">长事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的启动方式"><span class="nav-number">4.</span> <span class="nav-text">事务的启动方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1-如何避免长事务？"><span class="nav-number">5.</span> <span class="nav-text">问题1:如何避免长事务？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.</span> <span class="nav-text">事务隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离的实现"><span class="nav-number">2.</span> <span class="nav-text">事务隔离的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#此视图非彼视图"><span class="nav-number">2.1.</span> <span class="nav-text">此视图非彼视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性视图什么时候删除？"><span class="nav-number">2.2.</span> <span class="nav-text">一致性视图什么时候删除？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长事务"><span class="nav-number">3.</span> <span class="nav-text">长事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的启动方式"><span class="nav-number">4.</span> <span class="nav-text">事务的启动方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个栗子发现事务与行锁的关系"><span class="nav-number">5.</span> <span class="nav-text">一个栗子发现事务与行锁的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务的启动时机"><span class="nav-number">5.1.</span> <span class="nav-text">事务的启动时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1：读提交不创建一致性视图行不行？"><span class="nav-number">6.</span> <span class="nav-text">问题1：读提交不创建一致性视图行不行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题2-如何避免长事务？"><span class="nav-number">7.</span> <span class="nav-text">问题2:如何避免长事务？</span></a></li></ol></div>
             
 
             
@@ -711,7 +743,7 @@
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.5k字</span>
+  <span class="post-count">博客全站共58k字</span>
 </div>
 
 
