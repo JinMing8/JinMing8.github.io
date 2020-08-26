@@ -81,7 +81,8 @@
 <meta property="og:description" content="事务隔离级别 READ UNCOMMITED:读未提交是指，一个事务还没提交时，它做的变更就能被别的事务看到。 READ COMMITED:读提交是指，一个事务提交之后，它做的变更才会被其他事务看到。 REPEATABLE READ:可重复读是指，一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。 SERIALIZA">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/823acf76e53c0bdba7beab45e72e90d6.png">
-<meta property="og:updated_time" content="2020-08-25T15:46:55.298Z">
+<meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/20200826180008.png">
+<meta property="og:updated_time" content="2020-08-26T10:45:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql事务.md">
 <meta name="twitter:description" content="事务隔离级别 READ UNCOMMITED:读未提交是指，一个事务还没提交时，它做的变更就能被别的事务看到。 READ COMMITED:读提交是指，一个事务提交之后，它做的变更才会被其他事务看到。 REPEATABLE READ:可重复读是指，一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。 SERIALIZA">
@@ -319,7 +320,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-25 23:46:55" itemprop="dateModified" datetime="2020-08-25T23:46:55+08:00">2020-08-25</time>
+                <time title="修改时间：2020-08-26 18:45:00" itemprop="dateModified" datetime="2020-08-26T18:45:00+08:00">2020-08-26</time>
               </span>
             
           
@@ -346,7 +347,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.1k</span>
+              <span>4.9k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -356,7 +357,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
           
 
@@ -388,15 +389,15 @@
 <h3 id="长事务"><a href="#长事务" class="headerlink" title="长事务"></a>长事务</h3><p>长事务意味着系统里面会存在很老的事务视图。由于这些事务随时可能访问数据库里面的任何数据，所以这个事务提交之前，数据库里面它可能用到的回滚记录都必须保留，这就会导致大量占用存储空间。</p>
 <p>在 MySQL 5.5 及以前的版本，回滚日志是跟数据字典一起放在 ibdata 文件里的，即使长事务最终提交，回滚段被清理，文件也不会变小。我见过数据只有 20GB，而回滚段有 200GB 的库。最终只好为了清理回滚段，重建整个库。</p>
 <p>除了对回滚段的影响，长事务还占用锁资源，也可能拖垮整个库。</p>
+<p>你可以在 information_schema 库的 innodb_trx 这个表中查询长事务，比如下面这个语句，用于查找持续时间超过 60s 的事务。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> information_schema.innodb_trx <span class="keyword">where</span> TIME_TO_SEC(<span class="keyword">timediff</span>(<span class="keyword">now</span>(),trx_started))&gt;<span class="number">60</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="事务的启动方式"><a href="#事务的启动方式" class="headerlink" title="事务的启动方式"></a>事务的启动方式</h3><ul>
 <li>显式启动事务语句， begin 或 start transaction。配套的提交语句是 commit，回滚语句是 rollback。</li>
 <li>set autocommit=0，这个命令会将这个线程的自动提交关掉。意味着如果你只执行一个 select 语句，这个事务就启动了，而且并不会自动提交。这个事务持续存在直到你主动执行 commit 或 rollback 语句，或者断开连接。</li>
 </ul>
 <p>有些客户端连接框架会默认连接成功后先执行一个 set autocommit=0 的命令。这就导致接下来的查询都在事务中，如果是长连接，就导致了意外的长事务。</p>
 <p>因此，我会建议你总是使用 set autocommit=1, 通过显式语句的方式来启动事务。</p>
-<p>你可以在 information_schema 库的 innodb_trx 这个表中查询长事务，比如下面这个语句，用于查找持续时间超过 60s 的事务。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> information_schema.innodb_trx <span class="keyword">where</span> TIME_TO_SEC(<span class="keyword">timediff</span>(<span class="keyword">now</span>(),trx_started))&gt;<span class="number">60</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="一个栗子发现事务与行锁的关系"><a href="#一个栗子发现事务与行锁的关系" class="headerlink" title="一个栗子发现事务与行锁的关系"></a>一个栗子发现事务与行锁的关系</h3><p>下面是一个只有两行的表的初始化语句。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`k`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t(<span class="keyword">id</span>, k) <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
@@ -409,6 +410,52 @@
 </li>
 </ul>
 <p>在这个例子中，事务 C 没有显式地使用 begin/commit，表示这个 update 语句本身就是一个事务，语句完成的时候会自动提交。事务 B 在更新了行之后查询 ; 事务 A 在一个只读事务中查询，并且时间顺序上是在事务 B 的查询之后。</p>
+<p>一个数据版本，对于一个事务视图来说，除了自己的更新总是可见以外，有三种情况：</p>
+<ol>
+<li><p>版本未提交，不可见；</p>
+</li>
+<li><p>版本已提交，但是是在视图创建后提交的，不可见；</p>
+</li>
+<li><p>版本已提交，而且是在视图创建前提交的，可见。</p>
+</li>
+</ol>
+<p>现在我们用这个规则来分析上图的执行结果。</p>
+<p>最先提交的是事务C，事务C是自动提交的，提交过后k=2。</p>
+<p>然后，事务B执行更新操作，由于事务C是在事务B之后创建的，对于 事务B不可见(第2点)，事务B读取到k=1，将其更新为k=2,又做了一次查询 k=2。</p>
+<p>事务A先于事务B、事务C创建，即使事务C的事务已经提交，但对于事务A是不可见的（第2点），事务B还未提交，对于事务A不可见(第3点)。</p>
+<p>上述分析过程，在实际 运行结果中，事务B的分析有误，原因是忽略了更新操作是“当前读”。</p>
+<p>如果事务 B 在更新之前查询一次数据，这个查询返回的 k 的值确实是 1。</p>
+<p>但是，当它要去更新数据的时候，就不能再在历史版本上更新了，否则事务 C 的更新就丢失了。因此，事务 B 此时的 set k=k+1 是在（1,2）的基础上进行的操作。</p>
+<p>所以，这里就用到了这样一条规则：更新数据都是先读后写的，而这个读，只能读当前的值，称为“当前读”（current read）。</p>
+<p>这里我们提到了一个概念，叫作当前读。其实，除了 update 语句外，select 语句如果加锁，也是当前读。</p>
+<p>所以，如果把事务 A 的查询语句 select * from t where id=1 修改一下，加上 lock in share mode 或 for update，也都可以读到版本号是 101 的数据，返回的 k 的值是 3。下面这两个 select 语句，就是分别加了读锁（S 锁，共享锁）和写锁（X 锁，排他锁）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select k from t where id=1 lock in share mode;</span><br><span class="line">mysql&gt; select k from t where id=1 for update;</span><br></pre></td></tr></table></figure>
+
+<p>再往前一步，假设事务 C 不是马上提交的，而是变成了下面的事务 C’，会怎么样呢？</p>
+<p><img src="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/20200826180008.png" alt="事务C&#39;的提交在事务B之后"></p>
+<p>事务 C’的不同是，更新后并没有马上提交，在它提交前，事务 B 的更新语句先发起了。前面说过了，虽然事务 C’还没提交，但是 (1,2) 这个版本也已经生成了，并且是当前的最新版本。那么，事务 B 的更新语句会怎么处理呢？</p>
+<p>这时候，我们在上一篇文章中提到的“两阶段锁协议”就要上场了。</p>
+<p><strong>可重复读的核心就是一致性读（consistent read）；而事务更新数据的时候，只能用当前读。如果当前的记录的行锁被其他事务占用的话，就需要进入锁等待。</strong></p>
+<p>那么，我们再看一下，在读提交隔离级别下，事务 A 和事务 B 的查询语句查到的 k，分别应该是多少呢？</p>
+<p>这里需要说明一下，“start transaction with consistent snapshot; ”的意思是从这个语句开始，创建一个持续整个事务的一致性快照。所以，在读提交隔离级别下，这个用法就没意义了，等效于普通的 start transaction。</p>
+<p>我们再来分析一下执行结果：</p>
+<ul>
+<li>事务A、事务B、事务C’按顺序启动，事务C’最先更新k=2,对这一行加了写锁，但是未提交事务，锁未释放。</li>
+<li>事务B更新k的值，需要获取锁，但是事务C’还未提交，事务B获取不到锁，只能等待事务C’提交完成后，才能继续事务B的当前读，当事务C’释放锁后，事务B更新k=3</li>
+<li>事务A执行的时候，事务C’已经提交，但是事务C’是在事务A之后创建的，事务A不可见，所以 事务A查询的k=1。</li>
+</ul>
+<p>而读提交的逻辑和可重复读的逻辑类似，它们最主要的区别是：</p>
+<ul>
+<li>在可重复读隔离级别下，只需要在事务开始的时候创建一致性视图，之后事务里的其他查询都共用这个一致性视图；</li>
+<li>在读提交隔离级别下，每一个语句执行前都会重新算出一个新的视图。</li>
+</ul>
+<p>在读提交的隔离级别下，我们分析一下执行结果：</p>
+<p>start transaction with consistent snapshot;相当于start transaction。在执行到操作表的语句时，事务才真正启动。</p>
+<ul>
+<li>事务C’首先启动，更新k=2,对这一行加了写锁，但是未提交事务，锁未释放。</li>
+<li>事务B更新k的值，需要获取锁，阻塞在当前读，等待C’释放锁后更新k=3</li>
+<li>事务A执行的时候，事务C’已经提交，事务A可以获取事务C’更新的值，查询到k=2</li>
+</ul>
 <h3 id="问题1：读提交不创建一致性视图行不行？"><a href="#问题1：读提交不创建一致性视图行不行？" class="headerlink" title="问题1：读提交不创建一致性视图行不行？"></a>问题1：读提交不创建一致性视图行不行？</h3><p>不行。一致性视图的作用是规定哪些数据对于当前事务是可见的，哪些数据对于当前事务是不可见的。</p>
 <p>读提交的隔离级别，要求当前事务读取的是别的事务提交后的数据。但是，以下两种“当前读”的情况，即使别的事务还没提交，当前事务就可以读取到其他事务未提交的值，这是违反了读提交隔离级别的特性的。</p>
 <ul>
@@ -743,7 +790,7 @@
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共58k字</span>
+  <span class="post-count">博客全站共59.2k字</span>
 </div>
 
 
