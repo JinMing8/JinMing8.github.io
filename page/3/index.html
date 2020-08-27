@@ -190,7 +190,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">24</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">25</span></a>
 
   </li>
       
@@ -216,7 +216,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">47</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -270,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/Conditional/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/JMM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -286,7 +286,7 @@
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/SpringBoot/Bean/Conditional/" class="post-title-link" itemprop="url">Conditional.md</a>
+              <a href="/2020/08/10/并发/进阶篇/JMM/" class="post-title-link" itemprop="url">Java内存模型.md</a>
             
           </h1>
         
@@ -304,7 +304,7 @@
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:32" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:28:31" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -317,7 +317,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
 
                 
                 
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>492</span>
+              <span>1.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -359,15 +359,17 @@
       
           
             <p>
-              条件注解可以解决策略模式多种实现类的问题。
-使用自定义条件注解需要自己编写一个类实现conidtion接口，并在配置类中使用@conditional注解。
-@Bean   @Conditional(DatabaseCondition.class)   public Connect mysql()&#
+              三兄弟：JVM内存结构 VS Java内存模型 VS Java对象模型JVM内存结构
+共享区域
+堆区（所有线程共享）
+存储的全部是对象实例（通过new等指令创建的，并会被垃圾回收；数组也是保存在堆上面的，即使是基本类型的数据，也是保存在堆中的。因为在Java中，数组是对象），是内存中最大的一块。
+堆
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/SpringBoot/Bean/Conditional/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/JMM/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -398,7 +400,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/Configuration/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/ThreadLocal/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -414,7 +416,7 @@
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/SpringBoot/Bean/Configuration/" class="post-title-link" itemprop="url">Configuration.md</a>
+              <a href="/2020/08/10/并发/进阶篇/ThreadLocal/" class="post-title-link" itemprop="url">ThreadLocal.md</a>
             
           </h1>
         
@@ -432,7 +434,7 @@
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:39" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:28:49" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -445,7 +447,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
 
                 
                 
@@ -462,7 +464,139 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.5k</span>
+              <span>5.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              1. 两大使用场景
+每个线程需要一个自己独享的对象（通常是工具类，例如SimpleDateFormat和Random）
+使用时重写ThreadLocal的initValue方法
+需要保存到ThreadLocal里的对象的生成由我们控制
+
+
+每个线程内需要保存全局变量（例如在拦截器中获取用户信息），可
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/ThreadLocal/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/原子性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/并发/进阶篇/原子性/" class="post-title-link" itemprop="url">原子性.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:59" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>87</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -487,15 +621,18 @@
       
           
             <p>
-              @Configuration也是一个将bean加入到IOC容器的注解。那么它和其他的模式注解有什么区别吗？
-其他的模式注解只能将一个类加入到IOC容器，也能通过配置文件修改类的属性。但是它的缺点是不能应对一个接口有多个实现类的变化。假如需要注入的是另外的一个实现类，就很难实现了。
-而@Configu
-              ...
+              Java中的原子性操作有哪些
+除了long和double之外的基本类型的赋值操作
+所有引用类型的赋值操作，不管是32位机器还是64位机器
+Atomic包中所有类的原子操作
+
+
+              
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/SpringBoot/Bean/Configuration/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/原子性/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -526,7 +663,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/延时加载/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/unSafe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -542,7 +679,7 @@
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/SpringBoot/Bean/延时加载/" class="post-title-link" itemprop="url">延时加载.md</a>
+              <a href="/2020/08/10/并发/进阶篇/unSafe/" class="post-title-link" itemprop="url">Unsafe.md</a>
             
           </h1>
         
@@ -560,141 +697,7 @@
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:45" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.7k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              
-如何将一个类加入到Spring的IOC容器中呢？Spring为我们提供了5个注解：
-
-1.@Component
-2.@Controller
-3.@Service
-4.@Repository
-5.@Configuration
-其中，@Component是最基本的注解，其他的4个注解都是基于@Comp
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/SpringBoot/Bean/延时加载/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/Yield/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/基础篇/Yield/" class="post-title-link" itemprop="url">yield方法.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:22:48" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:29:01" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -724,7 +727,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.1k</span>
+              <span>1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -734,7 +737,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -749,19 +752,19 @@
       
           
             <p>
-              yield方法的使用
-Thread类中的静态native方法
-让出剩余的时间片，本身进入就绪状态,不释放锁
-cpu调度还可能调度到本线程
-sleep是在一段时间内进入阻塞状态，cpu不会调度它。而yield是让出执行权，本身还处于就绪状态，cpu还可能立即调度它
+              Unsafe类
+AtomicXX类大量采用Unsafe类完成底层操作
+位于JDK的rt.jar包中，由BootstrapClassLoader加载的核心类
+Unsafe类中的方法几乎都为native方法
+单例模式
 
-yield方法的定义public 
+栗子1：直接通过内存地址为对象的属性赋值public class UnsafeDem
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/Yield/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/unSafe/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -792,7 +795,7 @@ yield方法的定义public
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/JOIN/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -808,7 +811,7 @@ yield方法的定义public
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/基础篇/JOIN/" class="post-title-link" itemprop="url">JOIN方法.md</a>
+              <a href="/2020/08/10/并发/进阶篇/单例模式/" class="post-title-link" itemprop="url">单例模式.md</a>
             
           </h1>
         
@@ -826,7 +829,7 @@ yield方法的定义public
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:22:29" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:26:57" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -839,7 +842,7 @@ yield方法的定义public
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
 
                 
                 
@@ -856,7 +859,7 @@ yield方法的定义public
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>8.3k</span>
+              <span>2.9k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -866,7 +869,7 @@ yield方法的定义public
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>8 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -881,24 +884,13 @@ yield方法的定义public
       
           
             <p>
-              JOIN方法的使用
-应用场景
-
-阻塞当前线程，等待调用JOIN方法的线程执行结束后才继续执行。
-因为新的线程加入了我们，所以我们要等他执行完再出发。
-
-混淆点
-
-
-JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是Object类的方法
-
-主线程等待其
+              1.饿汉式-&gt;静态常量[可用]public class Singleton1 &#123;    // 在类加载的时候初始化    private final static Singleton1 instance = new Singleton1();        private Singl
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/JOIN/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/单例模式/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -929,7 +921,7 @@ JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/子线程异常处理/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/volatile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -945,7 +937,7 @@ JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/基础篇/子线程异常处理/" class="post-title-link" itemprop="url">子线程异常处理.md</a>
+              <a href="/2020/08/10/并发/进阶篇/volatile/" class="post-title-link" itemprop="url">volatile.md</a>
             
           </h1>
         
@@ -963,7 +955,7 @@ JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:25:56" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:29:14" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -993,133 +985,7 @@ JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.5k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              栗子1：主线程无法捕获子线程抛出的异常public class UnCaughtException &#123;    public static void main(String[] args) &#123;        try &#123;            MyThread myThre
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/子线程异常处理/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/创建线程的三种方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/基础篇/创建线程的三种方式/" class="post-title-link" itemprop="url">创建线程的方式.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:23:06" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>8k</span>
+              <span>7.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1144,14 +1010,15 @@ JOIN方法是Thread类的方法，而notify()、notifyall()、wait()等方法是
       
           
             <p>
-              方式一：继承Thread类创建线程在举栗子之前，我们先定义一个Account实体类：
-public class Account &#123;    private Integer accountId; // 账户id    private String accountName; // 账户名称   
+              volatile保证可见性，不保证原子性
+volatile强制线程到共享内存中读取数据，而不从线程工作内存中读取，从而使变量在多个线程中可见
+volatile无法保证原子性，volatile属于轻量级的同步，性能比synchronized强很多(不加锁)，但是只 保证线程见的可见性，并不能替代syn
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/创建线程的三种方式/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/volatile/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1182,7 +1049,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/生产者与消费者模式/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/并发队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -1198,7 +1065,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/基础篇/生产者与消费者模式/" class="post-title-link" itemprop="url">生产者与消费者.md</a>
+              <a href="/2020/08/10/并发/进阶篇/并发队列/" class="post-title-link" itemprop="url">并发队列.md</a>
             
           </h1>
         
@@ -1216,7 +1083,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:24:06" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:26:23" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -1246,7 +1113,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2k</span>
+              <span>3.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1256,7 +1123,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -1271,13 +1138,20 @@ public class Account &#123;    private Integer accountId; // 账户id    private
       
           
             <p>
-              栗子1：使用wait/notify方法来实现public class ProducerAndConsumerExample &#123;    public static void main(String[] args) &#123;        Container container = new
+              并发-无阻塞队列ConcurrentLinkedQueue并发无阻塞队列，BlockingQueue并发阻塞队列。
+ConcurrentLinkedQueue实现Queue接口，BlockingQueue本身是一个接口，继承Queue接口。
+
+ConcurrentLinkedQueue
+
+
+
+无阻赛
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/生产者与消费者模式/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/并发队列/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1308,7 +1182,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/死锁/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/精通篇/Semaphore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -1324,7 +1198,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/基础篇/死锁/" class="post-title-link" itemprop="url">死锁.md</a>
+              <a href="/2020/08/10/并发/精通篇/Semaphore/" class="post-title-link" itemprop="url">Semaphore.md</a>
             
           </h1>
         
@@ -1342,7 +1216,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:24:17" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:29:53" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -1372,7 +1246,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>10k</span>
+              <span>85</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1382,7 +1256,7 @@ public class Account &#123;    private Integer accountId; // 账户id    private
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>10 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -1397,18 +1271,18 @@ public class Account &#123;    private Integer accountId; // 账户id    private
       
           
             <p>
-              什么是死锁死锁就是两个（或更多）线程相互持有对方所需要的资源，又不主动释放资源，导致程序陷入无尽的阻塞，这就是死锁。
-多个线程造成死锁的情况：等待的资源，形成一个环
-死锁的影响
-死锁的影响在不同的系统中是不一样的，这取决于系统对死锁的处理能力
-数据库中：检测并放弃事务
-JVM中：无法自行处理，但是J
-              ...
+              使用信号量的注意点
+获取和释放的数量保持一致
+注意在初始化Semaphore的时候设置公平性，一般设置为true会更合理
+并不是必须由获取许可证的线程释放那个许可证，
+
+
+              
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/死锁/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/精通篇/Semaphore/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1439,7 +1313,7 @@ JVM中：无法自行处理，但是J
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/线程安全与Synchronized/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/可见性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -1455,7 +1329,7 @@ JVM中：无法自行处理，但是J
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/基础篇/线程安全与Synchronized/" class="post-title-link" itemprop="url">synchronized.md</a>
+              <a href="/2020/08/10/并发/进阶篇/可见性/" class="post-title-link" itemprop="url">可见性.md</a>
             
           </h1>
         
@@ -1473,7 +1347,7 @@ JVM中：无法自行处理，但是J
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:24:51" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:17" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -1503,7 +1377,7 @@ JVM中：无法自行处理，但是J
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>24k</span>
+              <span>1.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1513,7 +1387,7 @@ JVM中：无法自行处理，但是J
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>22 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -1528,16 +1402,145 @@ JVM中：无法自行处理，但是J
       
           
             <p>
-              什么是线程安全
-当多个线程访问某一个类、对象或方法时，这个类、对象或方法都能表现出与单线程执行时一致的行为，那么这个类、对象或方法就是线程安全的
-线程安全问题都是由全局变量（成员变量）以及静态变量引起的
-若每个线程中对全局变量、静态变量只有读操作，没有写操作，一般来说，这个全局变量是线程安全的。若有
+              为什么会有可见性问题
+高速缓存的容量比主内存小，但是速度仅次于寄存器，所以在CPU和主内存之间就多了Cache层
+线程间的对于共享变量的可见性问题不是直接由多核引起的，而是由多缓存引起的。如果所有个核心都只用一个缓存，那么也就不存在内存可见性问题了。
+每个核心都会将自己需要的数据读到独占缓存中，数据
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/基础篇/线程安全与Synchronized/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/可见性/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/精通篇/CyclicBarrier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/并发/精通篇/CyclicBarrier/" class="post-title-link" itemprop="url">CyclicBarrier.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:29:38" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>248</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              简单介绍CyclicBarrier就像起跑线，规定了有多少个跑道(等待的线程数)，必须等所有的选手到位(最后一个线程执行完)之后，才可以开始跑。
+
+CyclicBarrier初始值的设置需要与使用的数量相同，否则将会一直等待下去
+CyclicBarrier可以设置最大等待时间，超出最大等待时间抛出T
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/并发/精通篇/CyclicBarrier/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1601,7 +1604,7 @@ JVM中：无法自行处理，但是J
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1689,7 +1692,9 @@ JVM中：无法自行处理，但是J
         
           
         
-        <span class="site-state-item-count">24</span>
+          
+        
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1769,7 +1774,7 @@ JVM中：无法自行处理，但是J
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共59.2k字</span>
+  <span class="post-count">博客全站共60.4k字</span>
 </div>
 
 
