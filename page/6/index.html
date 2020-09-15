@@ -270,268 +270,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/可见性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/进阶篇/可见性/" class="post-title-link" itemprop="url">可见性.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:17" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              为什么会有可见性问题
-高速缓存的容量比主内存小，但是速度仅次于寄存器，所以在CPU和主内存之间就多了Cache层
-线程间的对于共享变量的可见性问题不是直接由多核引起的，而是由多缓存引起的。如果所有个核心都只用一个缓存，那么也就不存在内存可见性问题了。
-每个核心都会将自己需要的数据读到独占缓存中，数据
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/可见性/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/并发队列/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/进阶篇/并发队列/" class="post-title-link" itemprop="url">并发队列.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:26:23" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              并发-无阻塞队列ConcurrentLinkedQueue并发无阻塞队列，BlockingQueue并发阻塞队列。
-ConcurrentLinkedQueue实现Queue接口，BlockingQueue本身是一个接口，继承Queue接口。
-
-ConcurrentLinkedQueue
-
-
-
-无阻赛
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/并发队列/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -671,7 +409,7 @@ ConcurrentLinkedQueue
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/线程池/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/Conditional/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -687,7 +425,7 @@ ConcurrentLinkedQueue
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/进阶篇/线程池/" class="post-title-link" itemprop="url">线程池.md</a>
+              <a href="/2020/08/10/SpringBoot/Bean/Conditional/" class="post-title-link" itemprop="url">Conditional.md</a>
             
           </h1>
         
@@ -705,7 +443,7 @@ ConcurrentLinkedQueue
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:45" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:32" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -718,7 +456,7 @@ ConcurrentLinkedQueue
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
 
                 
                 
@@ -735,7 +473,135 @@ ConcurrentLinkedQueue
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.2k</span>
+              <span>492</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              条件注解可以解决策略模式多种实现类的问题。
+使用自定义条件注解需要自己编写一个类实现conidtion接口，并在配置类中使用@conditional注解。
+@Bean   @Conditional(DatabaseCondition.class)   public Connect mysql()&#
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/SpringBoot/Bean/Conditional/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/延时加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/SpringBoot/Bean/延时加载/" class="post-title-link" itemprop="url">延时加载.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:45" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -760,24 +626,149 @@ ConcurrentLinkedQueue
       
           
             <p>
-              1.为什么要使用线程池
-反复创建线程开销大
-过多的线程会占用太多内存
+              
+如何将一个类加入到Spring的IOC容器中呢？Spring为我们提供了5个注解：
 
-2.线程池的好处
-加快响应速度
-合理利用CPU和内存
-统一管理
-
-3.线程池适用场景
-服务器接收到大量的请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率
-在开发中，如果需要创建5个以上
+1.@Component
+2.@Controller
+3.@Service
+4.@Repository
+5.@Configuration
+其中，@Component是最基本的注解，其他的4个注解都是基于@Comp
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/线程池/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/SpringBoot/Bean/延时加载/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/SpringBoot/Bean/Configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/SpringBoot/Bean/Configuration/" class="post-title-link" itemprop="url">Configuration.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:11:39" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              @Configuration也是一个将bean加入到IOC容器的注解。那么它和其他的模式注解有什么区别吗？
+其他的模式注解只能将一个类加入到IOC容器，也能通过配置文件修改类的属性。但是它的缺点是不能应对一个接口有多个实现类的变化。假如需要注入的是另外的一个实现类，就很难实现了。
+而@Configu
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/SpringBoot/Bean/Configuration/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1019,7 +1010,7 @@ ConcurrentLinkedQueue
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共69.3k字</span>
+  <span class="post-count">博客全站共72k字</span>
 </div>
 
 

@@ -82,7 +82,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/1645290-20190908175249585-769163389.png">
 <meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/687300-20190301175101710-1284958427.png">
-<meta property="og:updated_time" content="2020-09-14T16:05:04.460Z">
+<meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/image-20200915225242681.png">
+<meta property="og:image" content="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/image-20200915214633261.png">
+<meta property="og:updated_time" content="2020-09-15T15:14:12.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JinMing">
 <meta name="twitter:description" content="JDK中加载资源的URL有什么缺点？JDK中的资源是通过java.net.URL类来加载的，但是它不够强大。但是它有缺点：  DK中没有提供标准的URL实现类去加载classpath路径下的资源或者是相对于ServletContext的资源。虽然它能够注册新的处理器去处理特殊的前缀(比如http:// ,file//)，但一般说比较复杂。 URL接口提供的功能不够全面，缺乏很多基本的功能。比如检查">
@@ -320,7 +322,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-15 00:05:04" itemprop="dateModified" datetime="2020-09-15T00:05:04+08:00">2020-09-15</time>
+                <time title="修改时间：2020-09-15 23:14:12" itemprop="dateModified" datetime="2020-09-15T23:14:12+08:00">2020-09-15</time>
               </span>
             
           
@@ -334,7 +336,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>7.6k</span>
+              <span>17k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -344,7 +346,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>7 分钟</span>
+              <span>16 分钟</span>
             </span>
           
 
@@ -366,6 +368,44 @@
 <p><img src="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/1645290-20190908175249585-769163389.png" alt="Resource接口"></p>
 <p>getFile()和getURL()方法通常无须使用，仅在通过简单方式访问无法实现时，Resource 提供传统的资源访问的功能。</p>
 <h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>策略模式用于封装系列的算法，这些算法通常被封装在一个被称为 Context 类中，客户端程序可以自由选择其中一种算法，或让 Context 为客户端选择一个最佳的算法——使用策略模式的优势是为了支持算法的自由切换。</p>
+<p>Spring 提供两个标志性接口：</p>
+<ul>
+<li>ResourceLoader：该接口实现类的实例可以获得一个 Resource 实例。</li>
+<li>ResourceLoaderAware：该接口实现类的实例将获得一个 ResourceLoader 的引用。</li>
+</ul>
+<p>在 ResourceLoader 接口里有如下方法：</p>
+<p>Resource getResource(String location)：该接口仅包含这个方法，该方法用于返回一个 Resource 实例。ApplicationContext 的实现类都实现 ResourceLoader 接口，因此 ApplicationContext 可用于直接获取 Resource 实例。</p>
+<p>此处 Spring 框架的 ApplicationContext 不仅是 Spring 容器，而且它还是资源访问策略的”决策者”，也就是策略模式中 Context 对象，它将为客户端代码”智能”地选择策略实现。</p>
+<p>当 ApplicationContext 实例获取 Resource 实例时，系统将默认采用与 ApplicationContext 相同的资源访问策略。对于如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Resource res = ctx.getResource(<span class="string">"some/resource/path/myTemplate.txt);</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面代码中无法确定 Spring 将哪个实现类来访问指定资源，Spring 将采用和 ApplicationContext 相同的策略来访问资源。也就是说：如果 ApplicationContext 是 FileSystemXmlApplicationContext，res 就是 FileSystemResource 实例；如果 ApplicationContext 是 ClassPathXmlApplicationContext，res 就是 ClassPathResource 实例；如果 ApplicationContext 是 XmlWebApplicationContext，res 是 ServletContextResource 实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring/spring-config.xml"</span>);</span><br><span class="line">		Resource resource = applicationContext.getResource(<span class="string">"text.txt"</span>);</span><br><span class="line">    	<span class="comment">// class org.springframework.core.io.DefaultResourceLoader$ClassPathContextResource</span></span><br><span class="line">		System.out.println(resource.getClass());</span><br><span class="line">    	<span class="comment">// filename:text.txt</span></span><br><span class="line">		System.out.println(<span class="string">"filename:"</span>+resource.getFilename());</span><br><span class="line">    	<span class="comment">// description:class path resource [text.txt]</span></span><br><span class="line">		System.out.println(<span class="string">"description:"</span>+resource.getDescription());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于程序中使用了 ClassPathApplicationContext 来获取资源，所以 Spring 将会从类加载路径下来访问资源，也就是使用 ClassPathResource 实现类.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:\\IDEA Pro\\spring-framework-5.2.0.RELEASE\\spring-framework-5.2.0.RELEASE\\spring-demo\\src\\main\\resources\\spring\\spring-config.xml"</span>);</span><br><span class="line">		Resource resource = applicationContext.getResource(<span class="string">"text.txt"</span>);</span><br><span class="line">    	<span class="comment">// class org.springframework.core.io.FileSystemResource</span></span><br><span class="line">		System.out.println(resource.getClass());</span><br><span class="line">    	<span class="comment">// filename:text.txt</span></span><br><span class="line">		System.out.println(<span class="string">"filename:"</span>+resource.getFilename());</span><br><span class="line">    	<span class="comment">// description:file [D:\IDEA Pro\spring-framework-5.2.0.RELEASE\spring-framework-5.2.0.RELEASE\text.txt]</span></span><br><span class="line">		System.out.println(<span class="string">"description:"</span>+resource.getDescription());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面的执行结果可以看出，程序的 Resource 实现类发了改变，变为 FileSystemResource 实现类。</p>
+<p>另一方面使用 ApplicationContext 来访问资源时，也可不理会 ApplicationContext 的实现类，强制使用指定的 ClassPathResource、FileSystemResource 等实现类，这可通过不同前缀来指定，如下代码所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:\\IDEA Pro\\spring-framework-5.2.0.RELEASE\\spring-framework-5.2.0.RELEASE\\spring-demo\\src\\main\\resources\\spring\\spring-config.xml"</span>);</span><br><span class="line">    <span class="comment">// class org.springframework.core.io.ClassPathResource</span></span><br><span class="line">    Resource resource = applicationContext.getResource(<span class="string">"classpath:text.txt"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似地，还可以使用标准的 <code>java.net.URL</code> 前缀来强制使用 <code>UrlResource</code> ，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class org.springframework.core.io.FileUrlResource</span></span><br><span class="line">Resource resource = applicationContext.getResource(<span class="string">"file:text.txt"</span>);</span><br><span class="line"><span class="comment">// class org.springframework.core.io.UrlResource</span></span><br></pre></td></tr></table></figure>
+
+<p>以下是常见前缀及对应的访问策略：</p>
+<ul>
+<li>classpath:以 ClassPathResource 实例来访问类路径里的资源。</li>
+<li>file:以 UrlResource 实例访问本地文件系统的资源。</li>
+<li>http:以 UrlResource 实例访问基于 HTTP 协议的网络资源。</li>
+<li>无前缀:由于 ApplicationContext 的实现类来决定访问策略。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 使用指定前缀来加载资源，只对当次有效</span></span><br><span class="line">    ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath:spring/spring-config.xml"</span>);</span><br><span class="line">    Resource resource = applicationContext.getResource(<span class="string">"test.txt"</span>);</span><br><span class="line">    <span class="comment">// 	class org.springframework.core.io.FileSystemResource</span></span><br><span class="line">    System.out.println(resource.getClass());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建 Spring 容器时，系统将从类加载路径来搜索 spring-config.xml；但使用 ApplicationContext 来访问资源时，依然采用的是 FileSystemResource 实现类，这与 FileSystemXmlApplicationContext 的访问策略是一致的。这表明：通过 classpath: 前缀指定资源访问策略仅仅对当次访问有效，程序后面进行资源访问时，还是会根据 AppliactionContext 的实现类来选择对应的资源访问策略。</p>
+<p>因此如果程序需要使用 ApplicationContext 访问资源，建议显式采用对应的实现类来加载配置文件，而不是通过前缀来指定资源访问策略。当然，我们也可在每次进行资源访问时都指定前缀，让程序根据前缀来选择资源访问策略。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 使用指定前缀来加载资源，只对当次有效</span></span><br><span class="line">    ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath:spring/spring-config.xml"</span>);</span><br><span class="line">    Resource resource = applicationContext.getResource(<span class="string">"classpath:test.txt"</span>);</span><br><span class="line">    <span class="comment">// 	class org.springframework.core.io.ClassPathResource</span></span><br><span class="line">    System.out.println(resource.getClass());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由此可见，如果每次进行资源访问时指定了前缀，则系统会采用前缀相应的资源访问策略。</p>
 <h3 id="策略模式的应用"><a href="#策略模式的应用" class="headerlink" title="策略模式的应用"></a>策略模式的应用</h3><p>Resource 接口本身没有提供访问任何底层资源的实现逻辑，针对不同的底层资源，Spring 将会提供不同的 Resource 实现类，不同的实现类负责不同的资源访问逻辑。</p>
 <p>Resource 接口就是策略模式的典型应用，Resource 接口就代表资源访问策略，但具体采用哪种策略实现，Resource 接口并不理会。<strong>客户端程序只和 Resource 接口耦合</strong>，并不知道底层采用何种资源访问策略，这样应用可以在不同的资源访问策略之间自由切换。比如，使用SystemFileResource替换ClassPathResource，只需要切换Resource接口的实现类即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Resource resource = <span class="keyword">new</span> ClassPathResource(<span class="string">"classpath:db.properties"</span>);</span><br><span class="line"><span class="comment">// 相关的resource操作方法....</span></span><br></pre></td></tr></table></figure>
@@ -435,18 +475,64 @@
 
 <p>小结：</p>
 <ol>
-<li><p>没有实现资源的根接口 InputStreamSource ，方法getInputStream() 留给具体的子类去实现</p>
-</li>
-<li><p>没有实现Resource接口的 getDescription() 方法，留给子类去实现，资源文件默认的equals()、hashCode() 都通过这个来判断</p>
-</li>
+<li>没有实现资源的根接口 InputStreamSource ，方法getInputStream() 留给具体的子类去实现</li>
 </ol>
 </li>
 </ul>
-<h3 id="Spring加载资源的方式"><a href="#Spring加载资源的方式" class="headerlink" title="Spring加载资源的方式"></a>Spring加载资源的方式</h3><p>Spring框架为了更方便的获取资源，尽量弱化程序员对各个Resource接口的实现类的感知，定义了另一个<code>ResourceLoader</code>接口。</p>
-<p>ResourceLoader接口是Spring用来加载资源的接口。ResourceLoader根据资源描述符(classpath:等)，根据不同的情况，加载不同的Resource实例。</p>
-<p>ResourceLoader的接口定义如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>没有实现Resource接口的 getDescription() 方法，留给子类去实现，资源文件默认的equals()、hashCode() 都通过这个来判断</li>
+</ol>
+<h3 id="ResourceLoader接口"><a href="#ResourceLoader接口" class="headerlink" title="ResourceLoader接口"></a>ResourceLoader接口</h3><p>ResourceLoader接口使用策略模式来提供Resource：</p>
+<p><img src="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/image-20200915225242681.png" alt="ResourceLoader"></p>
+<p>DefaultResourceLoader是ResourceLoader的实现类，实现了获取一个resource的方法。</p>
+<p>ResourcePatternResolver实现了获取多个resource的方法。ApplicationContext接口是ResourcePatternResolver接口的子接口，也就说明ApplicationContext能获取多个资源。</p>
+<p>AbstractApplicationContext既实现了ResourcePatternResolver接口，又继承了DefaultResourceLoader类，所以容器具有获取一个resource和获取多个resource的能力。</p>
+<p>我们来看一下DefaultResourceLoader的getResource方法是怎么通过策略模式返回不同的Resource实例的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Resource <span class="title">getResource</span><span class="params">(String location)</span> </span>&#123;</span><br><span class="line">    Assert.notNull(location, <span class="string">"Location must not be null"</span>);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 协议解析器解析，若指定了前缀file:或者http:等协议前缀，直接返回协议对应的Resource</span></span><br><span class="line"><span class="comment">	* 这也就是为什么可以通过指定前缀获取当次资源的Resource</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">    <span class="keyword">for</span> (ProtocolResolver protocolResolver : getProtocolResolvers()) &#123;</span><br><span class="line">        Resource resource = protocolResolver.resolve(location, <span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (resource != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> resource;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 如果是/开头，返回ClassPathResource</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">    <span class="keyword">if</span> (location.startsWith(<span class="string">"/"</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> getResourceByPath(location);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 如果是classpath:开头，返回ClassPathResource</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (location.startsWith(CLASSPATH_URL_PREFIX)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">			* 尝试解析成UrlResource,如果是文件，返回FileUrlResource,如果不是返回UrlResource</span></span><br><span class="line"><span class="comment"> 			*/</span></span><br><span class="line">            URL url = <span class="keyword">new</span> URL(location);</span><br><span class="line">            <span class="keyword">return</span> (ResourceUtils.isFileURL(url) ? <span class="keyword">new</span> FileUrlResource(url) : <span class="keyword">new</span> UrlResource(url));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (MalformedURLException ex) &#123;</span><br><span class="line">            <span class="comment">// 如果不能解析成UrlResource,使用ClassPathResource</span></span><br><span class="line">            <span class="keyword">return</span> getResourceByPath(location);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="ResourceLoaderAware接口"><a href="#ResourceLoaderAware接口" class="headerlink" title="ResourceLoaderAware接口"></a>ResourceLoaderAware接口</h3><p>ResourceLoaderAware 接口则用于指定该接口的实现类必须持有一个 ResourceLoader 实例。</p>
+<p>类似于 Spring 提供的 BeanFactoryAware、BeanNameAware 接口，ResourceLoaderAware 接口也提供了一个 setResourceLoader() 方法，该方法将由 Spring 容器负责调用，Spring 容器会将一个 ResourceLoader 对象作为该方法的参数传入。</p>
+<p>当我们把将 ResourceLoaderAware 实例部署在 Spring 容器中后，Spring 容器会将自身当成 ResourceLoader 作为 setResourceLoader() 方法的参数传入，由于 ApplicationContext 的实现类都实现了 ResourceLoader 接口，Spring 容器自身完全可作为 ResourceLoader 使用。</p>
+<h3 id="使用Resource作为属性"><a href="#使用Resource作为属性" class="headerlink" title="使用Resource作为属性"></a>使用Resource作为属性</h3><p>前面介绍了 Spring 提供的资源访问策略，但这些依赖访问策略要么需要使用 Resource 实现类，要么需要使用 ApplicationContext 来获取资源。实际上，当应用程序中的 Bean 实例需要访问资源时，Spring 有更好的解决方法：直接利用依赖注入。</p>
+<p>从这个意义上来看，Spring 框架不仅充分利用了策略模式来简化资源访问，而且还将策略模式和 IoC 进行充分地结合，最大程度地简化了 Spring 资源访问。</p>
+<p>归纳起来，如果 Bean 实例需要访问资源，有如下两种解决方案：</p>
+<ul>
+<li>代码中获取 Resource 实例。</li>
+<li>使用依赖注入。</li>
+</ul>
+<p>对于第一种方式的资源访问，当程序获取 Resource 实例时，总需要提供 Resource 所在的位置，不管通过 FileSystemResource 创建实例，还是通过 ClassPathResource 创建实例，或者通过 ApplicationContext 的 getResource() 方法获取实例，都需要提供资源位置。这意味着：资源所在的物理位置将被耦合到代码中，如果资源位置发生改变，则必须改写程序。因此，通常建议采用第二种方法，让 Spring 为 Bean 实例依赖注入资源。</p>
+<h3 id="加载多份配置文件"><a href="#加载多份配置文件" class="headerlink" title="加载多份配置文件"></a>加载多份配置文件</h3><p>classpath* : 前缀提供了装载多个 XML 配置文件的能力，当使用 classpath*: 前缀来指定 XML 配置文件时，系统将搜索类加载路径，找出所有与文件名的文件，分别装载文件中的配置定义，最后合并成一个 ApplicationContext。看如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath*:spring/spring-config.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在类路径下放置两份相同文件名的配置文件：</p>
+<p><img src="https://jinming8.oss-cn-shenzhen.aliyuncs.com/img/image-20200915214633261.png" alt="两份文件名相同的配置文件"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Loading XML bean definitions from URL [file:/G:/publish/codes/</span><br><span class="line"> <span class="number">08</span>/<span class="number">8.3</span>/ApplicationContext/classes/spring-config.xml]</span><br><span class="line"> Loading XML bean definitions from URL [file:/G:/publish/codes/</span><br><span class="line"> <span class="number">08</span>/<span class="number">8.3</span>/ApplicationContext/classes/spring/spring-config.xml]</span><br></pre></td></tr></table></figure>
+
+<p>当使用 classpath*: 前缀时，Spring 将会搜索类加载路径下所有满足该规则的配置文件。</p>
+<p>如果不是采用 classpath*: 前缀，而是改为使用 classpath: 前缀，Spring 只加载第一份符合条件的 XML 文件，例如如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath:spring/spring-config.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>执行上面代码将只看到如下输出：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Loading XML bean definitions from class path resource [spring-config.xml]</span><br></pre></td></tr></table></figure>
+
+<p>当使用 classpath: 前缀时，系统通过类加载路径搜索 spring-config.xml文件，如果找到文件名匹配的文件，系统立即停止搜索，装载该文件，即使有多份文件名匹配的文件，系统只装载第一份文件。资源文件的搜索顺序则取决于类加载路径的顺序，排在前面的配置文件将优先被加载。</p>
+<p>另外，还有一种可以一次性装载多份配置文件的方式：指定配置文件时指定使用通配符，例如如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath:bean*.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>位于类加载路径下所有以 bean 开头的 XML 配置文件都将被加载。</p>
+<p>除此之外，Spring 甚至允许将 classpath*: 前缀和通配符结合使用，如下语句也是合法的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ctx = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath*:bean*.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面语句创建 ApplicationContext 实例时，系统将搜索所有的类加载路径下，所有以 bean.xml 开头的 XML 配置文件</p>
+<h3 id="file-前缀的用法"><a href="#file-前缀的用法" class="headerlink" title="file:前缀的用法"></a>file:前缀的用法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 通过文件通配符来一次性装载多份配置文件</span></span><br><span class="line">        <span class="comment">//ApplicationContext ctx = newFileSystemXmlApplicationContext("bean.xml");</span></span><br><span class="line">        ApplicationContext ctx = newFileSystemXmlApplicationContext(<span class="string">"/bean.xml"</span>);</span><br><span class="line">        System.out.println(ctx);</span><br><span class="line">        <span class="comment">// 使用 ApplicationContext 的默认策略加载资源，没有指定前缀</span></span><br><span class="line">        Resource r = ctx.getResource(<span class="string">"book.xml"</span>);</span><br><span class="line">        <span class="comment">// 输出 Resource 描述</span></span><br><span class="line">        System.out.println(r.getDescription());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序有两行粗体字代码用于创建 ApplicationContext，第一行粗体字代码指定资源文件时采用了相对路径的写法,第二行粗体字代码指定资源文件时采用了绝对路径的写法。</p>
+<p>任意注释两条语句的其中之一，程序正常执行，没有任何区别，两句代码读取了相同的配置资源文件。问题是：如果程序中明明采用的一个是绝对路径、一个相对路径，为什么执行效果没有任何区别？</p>
+<p>产生问题的原因：当 FileSystemXmlApplicationContext 作为 ResourceLoader 使用时，它会发生变化，FileSystemApplicationContext 会简单地让所有绑定的 FileSystemResource 实例把绝对路径都当成相对路径处理，而不管是否以斜杠开头，所以上面两行代码的效果是完全一样的。</p>
+<p>如果程序中需要访问绝对路径，则不要直接使用 FileSystemResource 或 FileSystemXmlApplicationContext 来指定绝对路径。建议强制使用 file: 前缀来区分相对路径和绝对路径，例如如下两行代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问相对路径下的 bean.xml</span></span><br><span class="line">ApplicationContext ctx = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"file:bean.xml"</span>);</span><br><span class="line"><span class="comment">// 访问绝对路径下 bean.xml</span></span><br><span class="line">ApplicationContext ctx = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"file:/bean.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>相对路径以当前工作路径为路径起点，而绝对路径以文件系统根路径为路径起点。</p>
 
     </div>
 
@@ -701,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK中加载资源的URL有什么缺点？"><span class="nav-number">1.</span> <span class="nav-text">JDK中加载资源的URL有什么缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring中对资源的抽象"><span class="nav-number">2.</span> <span class="nav-text">Spring中对资源的抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">3.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式的应用"><span class="nav-number">4.</span> <span class="nav-text">策略模式的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource的实现类"><span class="nav-number">5.</span> <span class="nav-text">Resource的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UrlResource的使用"><span class="nav-number">5.1.</span> <span class="nav-text">UrlResource的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClassPathResource的使用"><span class="nav-number">5.2.</span> <span class="nav-text">ClassPathResource的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileSystemResource的使用"><span class="nav-number">5.3.</span> <span class="nav-text">FileSystemResource的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring资源访问相关类"><span class="nav-number">6.</span> <span class="nav-text">Spring资源访问相关类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring加载资源的方式"><span class="nav-number">7.</span> <span class="nav-text">Spring加载资源的方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK中加载资源的URL有什么缺点？"><span class="nav-number">1.</span> <span class="nav-text">JDK中加载资源的URL有什么缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring中对资源的抽象"><span class="nav-number">2.</span> <span class="nav-text">Spring中对资源的抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">3.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式的应用"><span class="nav-number">4.</span> <span class="nav-text">策略模式的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource的实现类"><span class="nav-number">5.</span> <span class="nav-text">Resource的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UrlResource的使用"><span class="nav-number">5.1.</span> <span class="nav-text">UrlResource的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClassPathResource的使用"><span class="nav-number">5.2.</span> <span class="nav-text">ClassPathResource的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileSystemResource的使用"><span class="nav-number">5.3.</span> <span class="nav-text">FileSystemResource的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring资源访问相关类"><span class="nav-number">6.</span> <span class="nav-text">Spring资源访问相关类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResourceLoader接口"><span class="nav-number">7.</span> <span class="nav-text">ResourceLoader接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResourceLoaderAware接口"><span class="nav-number">8.</span> <span class="nav-text">ResourceLoaderAware接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Resource作为属性"><span class="nav-number">9.</span> <span class="nav-text">使用Resource作为属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载多份配置文件"><span class="nav-number">10.</span> <span class="nav-text">加载多份配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file-前缀的用法"><span class="nav-number">11.</span> <span class="nav-text">file:前缀的用法</span></a></li></ol></div>
             
 
             
@@ -755,7 +841,7 @@
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共69.3k字</span>
+  <span class="post-count">博客全站共72k字</span>
 </div>
 
 
