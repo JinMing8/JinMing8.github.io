@@ -72,19 +72,19 @@
     })();
 </script>
 
-  <meta name="description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@SpringBootConfi">
+  <meta name="description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： @SpringBootConfiguration实际上也是一个@Configuration 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy">
 <meta name="keywords" content="配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动配置.md">
 <meta property="og:url" content="http://caixukun8.top/2020/08/10/SpringBoot/自动配置/index.html">
 <meta property="og:site_name" content="JinMing">
-<meta property="og:description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@SpringBootConfi">
+<meta property="og:description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： @SpringBootConfiguration实际上也是一个@Configuration 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="d:%5Cming%5Cimages%5Cimage-20200620201852666.png">
-<meta property="og:updated_time" content="2020-08-10T15:09:54.346Z">
+<meta property="og:updated_time" content="2020-10-02T03:56:21.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自动配置.md">
-<meta name="twitter:description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@SpringBootConfi">
+<meta name="twitter:description" content="我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？ 我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去： @SpringBootConfiguration实际上也是一个@Configuration 12345678@Target(ElementType.TYPE)@Retention(RetentionPolicy">
 <meta name="twitter:image" content="d:%5Cming%5Cimages%5Cimage-20200620201852666.png">
   <link rel="canonical" href="http://caixukun8.top/2020/08/10/SpringBoot/自动配置/">
 
@@ -308,11 +308,19 @@
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:09:54" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-02 11:56:21" itemprop="dateModified" datetime="2020-10-02T11:56:21+08:00">2020-10-02</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -363,16 +371,17 @@
       
         <p>我们运行启动类就可以运行项目，那么SpringBoot是怎么自动配置的呢？</p>
 <p>我们从SpringBoot的入口类开始分析。入口类有@SpringBootApplication注解。点击进去：</p>
+<p>@SpringBootConfiguration实际上也是一个@Configuration</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(excludeFilters = &#123; <span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="line">		<span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br></pre></td></tr></table></figure>
 
-<p>SpringBoot自动配置的核心注解是@EnableAutoConfiguration。点击进去：</p>
+<p>SpringBoot自动配置的核心注解是@EnableAutoConfiguration，它主要是用来加载第三方库的类，点击进去：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(AutoConfigurationImportSelector.class)</span><br></pre></td></tr></table></figure>
 
 <p>@AutoConfigurationPackage：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Import</span>(AutoConfigurationPackages.Registrar.class)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AutoConfigurationPackage &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到上面的注解导入了一个类，这个类调用了getPackageName()方法。通过debug调试可以知道，这个packageName是SprinGBoot启动类同级目录的包名。换句话说，SpringBoot会自动扫描与启动类同级包以及子包的所有类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata metadata, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">			register(registry, <span class="keyword">new</span> PackageImport(metadata).getPackageName());</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata metadata, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">    register(registry, <span class="keyword">new</span> PackageImport(metadata).getPackageName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>接下来看@EnableAutoConfiguration还导入了另外一个类：@Import(AutoConfigurationImportSelector.class)</p>
 <p>selectImports方法返回一个String数组，该数组包含了配置类的全限定名。通过获取配置类的全限定名，来将类导入IOC容器，从而实现自动配置。</p>
@@ -438,8 +447,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/08/10/SpringBoot/修改路由前缀/" rel="next" title="修改路由前缀.md">
-                  <i class="fa fa-chevron-left"></i> 修改路由前缀.md
+                <a href="/2020/08/10/SpringBoot/序列化工具类/" rel="next" title="序列化工具类.md">
+                  <i class="fa fa-chevron-left"></i> 序列化工具类.md
                 </a>
               
             </div>
@@ -448,8 +457,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/08/10/SpringBoot/SpringBoot配置/" rel="prev" title="SpringBoot配置.md">
-                  SpringBoot配置.md <i class="fa fa-chevron-right"></i>
+                <a href="/2020/08/10/SpringBoot/加载第三方组件/" rel="prev" title="加载第三方组件.md">
+                  加载第三方组件.md <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -682,7 +691,7 @@
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共79k字</span>
+  <span class="post-count">博客全站共81.5k字</span>
 </div>
 
 
