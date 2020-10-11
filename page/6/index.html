@@ -190,7 +190,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">35</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
 
   </li>
       
@@ -216,7 +216,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">62</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">64</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -263,6 +263,271 @@
           <div id="content" class="content page-home">
             
   <section id="posts" class="posts-expand">
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/线程安全产生的原因/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/并发/基础篇/线程安全产生的原因/" class="post-title-link" itemprop="url">线程安全.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:24:30" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              从JVM的内存模型上看，线程安全的问题是由于多个线程争夺共享内存的同一共享资源而产生的。
+
+多个线程争夺共享内存的同一共享资源就一定会产生线程安全问题吗？
+不一定，如果多条线程不修改共享资源，那么不会产生线程安全问题。
+
+
+
+线程安全产生的两个原因
+可见性
+多个线程访问同一个共享变量时，其中一个线程
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/并发/基础篇/线程安全产生的原因/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/基础篇/进程与线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/并发/基础篇/进程与线程/" class="post-title-link" itemprop="url">进程与线程.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:23:49" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>759</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              操作系统、进程、线程的关系
+
+操作系统将资源分配给进程，进程将资源分配给线程。但是CPU资源比较特殊，CPU资源是直接分配给线程的。
+一个进程中至少会有一个线程，进程不能脱离进程而存在。
+main函数启动的时候，会产生JVM进程，JVM进程会产生多条线程。main函数线程称为主线程。还有产生GC回收
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/并发/基础篇/进程与线程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
       
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -501,138 +766,6 @@ public synchronized void start() &#123;        // A zero status value correspond
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/08/10/并发/进阶篇/JMM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/ThreadLocal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/进阶篇/ThreadLocal/" class="post-title-link" itemprop="url">ThreadLocal.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:28:49" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>5.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>5 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              1. 两大使用场景
-每个线程需要一个自己独享的对象（通常是工具类，例如SimpleDateFormat和Random）
-使用时重写ThreadLocal的initValue方法
-需要保存到ThreadLocal里的对象的生成由我们控制
-
-
-每个线程内需要保存全局变量（例如在拦截器中获取用户信息），可
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/ThreadLocal/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -925,6 +1058,138 @@ Unsafe类中的方法几乎都为native方法
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/ThreadLocal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JinMing">
+      <meta itemprop="description" content="且行且珍惜">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JinMing">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2020/08/10/并发/进阶篇/ThreadLocal/" class="post-title-link" itemprop="url">ThreadLocal.md</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:28:49" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              1. 两大使用场景
+每个线程需要一个自己独享的对象（通常是工具类，例如SimpleDateFormat和Random）
+使用时重写ThreadLocal的initValue方法
+需要保存到ThreadLocal里的对象的生成由我们控制
+
+
+每个线程内需要保存全局变量（例如在拦截器中获取用户信息），可
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/ThreadLocal/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/volatile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1184,7 +1449,7 @@ Atomic包中所有类的原子操作
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/并发队列/">
+    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/可见性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JinMing">
@@ -1200,7 +1465,7 @@ Atomic包中所有类的原子操作
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/2020/08/10/并发/进阶篇/并发队列/" class="post-title-link" itemprop="url">并发队列.md</a>
+              <a href="/2020/08/10/并发/进阶篇/可见性/" class="post-title-link" itemprop="url">可见性.md</a>
             
           </h1>
         
@@ -1218,7 +1483,7 @@ Atomic包中所有类的原子操作
                 
               
 
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:26:23" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
+              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:17" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
             </span>
           
             
@@ -1248,7 +1513,7 @@ Atomic包中所有类的原子操作
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.1k</span>
+              <span>1.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1258,7 +1523,7 @@ Atomic包中所有类的原子操作
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>3 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -1273,285 +1538,16 @@ Atomic包中所有类的原子操作
       
           
             <p>
-              并发-无阻塞队列ConcurrentLinkedQueue并发无阻塞队列，BlockingQueue并发阻塞队列。
-ConcurrentLinkedQueue实现Queue接口，BlockingQueue本身是一个接口，继承Queue接口。
-
-ConcurrentLinkedQueue
-
-
-
-无阻赛
+              为什么会有可见性问题
+高速缓存的容量比主内存小，但是速度仅次于寄存器，所以在CPU和主内存之间就多了Cache层
+线程间的对于共享变量的可见性问题不是直接由多核引起的，而是由多缓存引起的。如果所有个核心都只用一个缓存，那么也就不存在内存可见性问题了。
+每个核心都会将自己需要的数据读到独占缓存中，数据
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/并发队列/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/单例模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/进阶篇/单例模式/" class="post-title-link" itemprop="url">单例模式.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:26:57" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>2.9k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              1.饿汉式-&gt;静态常量[可用]public class Singleton1 &#123;    // 在类加载的时候初始化    private final static Singleton1 instance = new Singleton1();        private Singl
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/单例模式/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caixukun8.top/2020/08/10/并发/进阶篇/锁/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JinMing">
-      <meta itemprop="description" content="且行且珍惜">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JinMing">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-              
-              <a href="/2020/08/10/并发/进阶篇/锁/" class="post-title-link" itemprop="url">锁的分类.md</a>
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-10 22:46:35 / 修改时间：23:27:32" itemprop="dateCreated datePublished" datetime="2020-08-10T22:46:35+08:00">2020-08-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.3k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              1.锁的分类
-2.悲观锁和乐观锁
-悲观锁（互斥同步锁）
-典型例子：Synchronized、lock
-
-
-乐观锁（非互斥同步锁）
-典型例子：原子类、并发容器
-使用CAS算法实现
-
-
-
-3.悲观锁和乐观锁的开销对比
-悲观锁的原始开销要高于乐观锁，但是特点是一劳永逸，临界区持锁时间就算越来越长，也不会对
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/10/并发/进阶篇/锁/#more" rel="contents">
+              <a class="btn" href="/2020/08/10/并发/进阶篇/可见性/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1615,7 +1611,7 @@ ConcurrentLinkedQueue
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1731,7 +1727,9 @@ ConcurrentLinkedQueue
         
           
         
-        <span class="site-state-item-count">35</span>
+          
+        
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1811,7 +1809,7 @@ ConcurrentLinkedQueue
     <span> 人看我的博客啦 </span>
   <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共86.2k字</span>
+  <span class="post-count">博客全站共87.5k字</span>
 </div>
 
 
